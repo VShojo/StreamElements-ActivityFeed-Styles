@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         StreamElements ActivityFeed Styles
 // @namespace    https://vshojo.com/
-// @version      1.01
+// @version      1.02
 // @description  Color items in StreamElements' activity feed to be more readable
 // @author       Fugi
 // @match        https://yoink.streamelements.com/activity-feed*
@@ -47,7 +47,8 @@
         m = /gifted (a|\d+) (Tier \d) sub/.exec(title.innerText)
         if (m) {
           const n = m[1] === 'a' ? 1 : Number(m[1])
-          e.classList.add(`vsj-sub`)
+          const t = [20, 10, 4, 2, 1].find(v => n >= v) || 1
+          e.classList.add(`vsj-gift${t}`)
           fixText(`${formatter.format(n)} gift subs (${m[2]})`, '')
           continue
         }
@@ -63,15 +64,21 @@
 
   const s = document.createElement('style')
   s.innerText = `
-      .vsj-root > div:before { display: none; }
-      .vsj-bits100, .vsj-bits100:hover { background: #134EB4; }
-      .vsj-bits200, .vsj-bits200:hover { background: #1CE0FF; }
-      .vsj-bits500, .vsj-bits500:hover { background: #26E8A9; }
-      .vsj-bits1000, .vsj-bits1000:hover { background: #FCBE1F; }
-      .vsj-bits2000, .vsj-bits2000:hover { background: #EF6708; }
-      .vsj-bits5000, .vsj-bits5000:hover { background: #DE0050; }
-      .vsj-bits10000, .vsj-bits10000:hover { background: #DD0B17; }
-      .vsj-sub, .vsj-sub:hover { background: #3B8C4D; }
+      .vsj-root > div:before {  display: none; }
+      .vsj-root > div { border: none; }
+      .vsj-bits100   { background: #134EB4 !important; }
+      .vsj-bits200   { background: #1CE0FF !important; }
+      .vsj-bits500   { background: #26E8A9 !important; }
+      .vsj-bits1000  { background: #FCBE1F !important; }
+      .vsj-bits2000  { background: #EF6708 !important; }
+      .vsj-bits5000  { background: #DE0050 !important; }
+      .vsj-bits10000 { background: #DD0B17 !important; }
+      .vsj-gift1     { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #26E8A9 10px, #26E8A9 20px) !important; }
+      .vsj-gift2     { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #FCBE1F 10px, #FCBE1F 20px) !important; }
+      .vsj-gift4     { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #EF6708 10px, #EF6708 20px) !important; }
+      .vsj-gift10    { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #DE0050 10px, #DE0050 20px) !important; }
+      .vsj-gift20    { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #DD0B17 10px, #DD0B17 20px) !important; }
+      .vsj-sub       { background: #3B8C4D !important; }
       .vsj-root .MuiAvatar-circular {
         width: 48px;
         height: 48px;
@@ -81,16 +88,19 @@
         font-size: 20px;
         font-weight: bold;
         opacity: 0.8;
+        text-shadow: 0 0 2px black;
       }
       .vsj-given {
         color: white;
         font-size: 24px;
         font-weight: bold;
+        text-shadow: 0 0 2px black;
       }
       .vsj-root p[type="sectionHeadline"] {
         color: white;
         font-size: 18px !important;
         opacity: 0.90;
+        text-shadow: 0 0 2px black;
       }
     `
   document.head.appendChild(s)
