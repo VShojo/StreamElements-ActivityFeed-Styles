@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         StreamElements ActivityFeed Styles
 // @namespace    https://vshojo.com/
-// @version      1.0
+// @version      1.01
 // @description  Color items in StreamElements' activity feed to be more readable
 // @author       Fugi
 // @match        https://yoink.streamelements.com/activity-feed*
@@ -37,7 +37,7 @@
         let m = /cheered (\d+) bits/.exec(title.innerText)
         if (m) {
           const n = Number(m[1])
-          const t = [100, 200, 500, 1000, 2000, 5000, 10000].findLast(v => n >= v)
+          const t = [10000, 5000, 2000, 1000, 500, 200, 100].find(v => n >= v)
           if (t) {
             e.classList.add(`vsj-bits${t}`)
           }
