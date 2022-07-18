@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         StreamElements ActivityFeed Styles
 // @namespace    https://vshojo.com/
-// @version      1.02
+// @version      1.03
 // @description  Color items in StreamElements' activity feed to be more readable
 // @author       Fugi
 // @match        https://yoink.streamelements.com/activity-feed*
@@ -49,6 +49,7 @@
           const n = m[1] === 'a' ? 1 : Number(m[1])
           const t = [20, 10, 4, 2, 1].find(v => n >= v) || 1
           e.classList.add(`vsj-gift${t}`)
+          e.classList.add(`vsj-sub`)
           fixText(`${formatter.format(n)} gift subs (${m[2]})`, '')
           continue
         }
@@ -73,12 +74,12 @@
       .vsj-bits2000  { background: #EF6708 !important; }
       .vsj-bits5000  { background: #DE0050 !important; }
       .vsj-bits10000 { background: #DD0B17 !important; }
-      .vsj-gift1     { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #26E8A9 10px, #26E8A9 20px) !important; }
-      .vsj-gift2     { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #FCBE1F 10px, #FCBE1F 20px) !important; }
-      .vsj-gift4     { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #EF6708 10px, #EF6708 20px) !important; }
-      .vsj-gift10    { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #DE0050 10px, #DE0050 20px) !important; }
-      .vsj-gift20    { background: repeating-linear-gradient(-60deg, #3B8C4D, #3B8C4D 10px, #DD0B17 10px, #DD0B17 20px) !important; }
       .vsj-sub       { background: #3B8C4D !important; }
+      .vsj-gift1  .vsj-given { background: #26E8A9 !important; }
+      .vsj-gift2  .vsj-given { background: #FCBE1F !important; }
+      .vsj-gift4  .vsj-given { background: #EF6708 !important; }
+      .vsj-gift10 .vsj-given { background: #DE0050 !important; }
+      .vsj-gift20 .vsj-given { background: #DD0B17 !important; }
       .vsj-root .MuiAvatar-circular {
         width: 48px;
         height: 48px;
