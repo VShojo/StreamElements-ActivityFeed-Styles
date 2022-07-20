@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         StreamElements ActivityFeed Styles
 // @namespace    https://vshojo.com/
-// @version      1.03
+// @version      1.04
 // @description  Color items in StreamElements' activity feed to be more readable
 // @author       Fugi
 // @match        https://yoink.streamelements.com/activity-feed*
@@ -84,24 +84,24 @@
         width: 48px;
         height: 48px;
       }
-      .vsj-name {
-        color: white;
-        font-size: 20px;
+      .vsj-root .MuiTypography-root {
+        color: black;
+        text-shadow: 0 0 2px white, 0 0 2px white;
         font-weight: bold;
+      }
+      .vsj-name {
+        font-size: 20px;
         opacity: 0.8;
-        text-shadow: 0 0 2px black;
       }
       .vsj-given {
-        color: white;
         font-size: 24px;
-        font-weight: bold;
-        text-shadow: 0 0 2px black;
       }
       .vsj-root p[type="sectionHeadline"] {
-        color: white;
         font-size: 18px !important;
         opacity: 0.90;
-        text-shadow: 0 0 2px black;
+      }
+      .vsj-root > div > div > div:last-child {
+        opacity: 1;
       }
     `
   document.head.appendChild(s)
